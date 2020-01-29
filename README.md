@@ -1,6 +1,4 @@
-# Storyblok Field-Type
-
-> A Storyblok Field-Type Plugin Starter Project
+# Storyblok Field-Type Plugin for Spacing
 
 ## Project setup
 ```
