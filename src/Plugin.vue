@@ -1,36 +1,36 @@
 <template>
   <div class="container">
     <div class="button-group">
-      <button class="active">All (s)</button>
-      <button>Medium UP</button>
-      <button>Large UP</button>
+      <button :class="{ active: breakpoint === 'all' }" v-on:click="setBreakpoint('all')">All (s)</button>
+      <button :class="{ active: breakpoint === 'medium' }" v-on:click="setBreakpoint('medium')">Medium UP</button>
+      <button :class="{ active: breakpoint === 'large' }" v-on:click="setBreakpoint('large')">Large UP</button>
     </div>
-    <div class="box-model">
+    <div v-if="breakpoint === 'all'" class="box-model all">
       <div class="box-model__margin relative">
         <span class="box-model__title">margin</span>
         <div class="box-model__margin-top">
-          <select class="select-breakpoint" v-model="model.marginTop">
+          <select class="select-breakpoint" v-if="model.all" v-model="model.all.marginTop">
             <option :key="option" v-for="option in options" :value="option">{{
               option
             }}</option>
           </select>
         </div>
         <div class="box-model__margin-bottom">
-          <select class="select-breakpoint" v-model="model.marginBottom">
+          <select class="select-breakpoint" v-if="model.all" v-model="model.all.marginBottom">
             <option :key="option" v-for="option in options" :value="option">{{
               option
             }}</option>
           </select>
         </div>
         <div class="box-model__margin-left">
-          <select class="select-breakpoint" v-model="model.marginLeft">
+          <select class="select-breakpoint" v-if="model.all" v-model="model.all.marginLeft">
             <option :key="option" v-for="option in options" :value="option">{{
               option
             }}</option>
           </select>
         </div>
         <div class="box-model__margin-right">
-          <select class="select-breakpoint" v-model="model.marginRight">
+          <select class="select-breakpoint" v-if="model.all" v-model="model.all.marginRight">
             <option :key="option" v-for="option in options" :value="option">{{
               option
             }}</option>
@@ -39,28 +39,164 @@
         <div class="box-model__padding relative">
           <span class="box-model__title">padding</span>
           <div class="box-model__padding-top">
-            <select class="select-breakpoint" v-model="model.paddingTop">
+            <select class="select-breakpoint" v-if="model.all" v-model="model.all.paddingTop">
               <option :key="option" v-for="option in options" :value="option">{{
                 option
               }}</option>
             </select>
           </div>
           <div class="box-model__padding-bottom">
-            <select class="select-breakpoint" v-model="model.paddingBottom">
+            <select class="select-breakpoint" v-if="model.all" v-model="model.all.paddingBottom">
               <option :key="option" v-for="option in options" :value="option">{{
                 option
               }}</option>
             </select>
           </div>
           <div class="box-model__padding-left">
-            <select class="select-breakpoint" v-model="model.paddingLeft">
+            <select class="select-breakpoint" v-if="model.all" v-model="model.all.paddingLeft">
               <option :key="option" v-for="option in options" :value="option">{{
                 option
               }}</option>
             </select>
           </div>
           <div class="box-model__padding-right">
-            <select class="select-breakpoint" v-model="model.paddingRight">
+            <select class="select-breakpoint" v-if="model.all" v-model="model.all.paddingRight">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
+          </div>
+          <div class="box-model__dimensions relative">
+            content
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="breakpoint === 'large'" class="box-model large">
+      <div class="box-model__margin relative">
+        <span class="box-model__title">margin</span>
+        <div class="box-model__margin-top">
+          <select class="select-breakpoint" v-if="model.large" v-model="model.large.marginTop">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
+        </div>
+        <div class="box-model__margin-bottom">
+          <select class="select-breakpoint" v-if="model.large" v-model="model.large.marginBottom">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
+        </div>
+        <div class="box-model__margin-left">
+          <select class="select-breakpoint" v-if="model.large" v-model="model.large.marginLeft">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
+        </div>
+        <div class="box-model__margin-right">
+          <select class="select-breakpoint" v-if="model.large" v-model="model.large.marginRight">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
+        </div>
+        <div class="box-model__padding relative">
+          <span class="box-model__title">padding</span>
+          <div class="box-model__padding-top">
+            <select class="select-breakpoint" v-if="model.large" v-model="model.large.paddingTop">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
+          </div>
+          <div class="box-model__padding-bottom">
+            <select class="select-breakpoint" v-if="model.large" v-model="model.large.paddingBottom">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
+          </div>
+          <div class="box-model__padding-left">
+            <select class="select-breakpoint" v-if="model.large" v-model="model.large.paddingLeft">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
+          </div>
+          <div class="box-model__padding-right">
+            <select class="select-breakpoint" v-if="model.large" v-model="model.large.paddingRight">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
+          </div>
+          <div class="box-model__dimensions relative">
+            content
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="breakpoint === 'medium'" class="box-model medium">
+      <div class="box-model__margin relative">
+        <span class="box-model__title">margin</span>
+        <div class="box-model__margin-top">
+          <select class="select-breakpoint" v-if="model.medium" v-model="model.medium.marginTop">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
+        </div>
+        <div class="box-model__margin-bottom">
+          <select class="select-breakpoint" v-if="model.medium" v-model="model.medium.marginBottom">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
+        </div>
+        <div class="box-model__margin-left">
+          <select class="select-breakpoint" v-if="model.medium" v-model="model.medium.marginLeft">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
+        </div>
+        <div class="box-model__margin-right">
+          <select class="select-breakpoint" v-if="model.medium" v-model="model.medium.marginRight">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
+        </div>
+        <div class="box-model__padding relative">
+          <span class="box-model__title">padding</span>
+          <div class="box-model__padding-top">
+            <select class="select-breakpoint" v-if="model.medium" v-model="model.medium.paddingTop">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
+          </div>
+          <div class="box-model__padding-bottom">
+            <select class="select-breakpoint" v-if="model.medium" v-model="model.medium.paddingBottom">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
+          </div>
+          <div class="box-model__padding-left">
+            <select class="select-breakpoint" v-if="model.medium" v-model="model.medium.paddingLeft">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
+          </div>
+          <div class="box-model__padding-right">
+            <select class="select-breakpoint" v-if="model.medium" v-model="model.medium.paddingRight">
               <option :key="option" v-for="option in options" :value="option">{{
                 option
               }}</option>
@@ -80,7 +216,8 @@ export default {
   mixins: [window.Storyblok.plugin],
   data: function() {
     return {
-      options: ["-", "xs", "s", "m", "l", "xl", "xxl"]
+      options: ["-", "xs", "s", "m", "l", "xl", "xxl"],
+      breakpoint: 'all',
     };
   },
   methods: {
@@ -88,15 +225,40 @@ export default {
       return {
         // needs to be equal to your storyblok plugin name
         plugin: "spacing-plugin",
-        paddingTop: "",
-        paddingBottom: "",
-        paddingLeft: "",
-        paddingRight: "",
-        marginTop: "",
-        marginBottom: "",
-        marginLeft: "",
-        marginRight: ""
+        all: {
+          paddingTop: "-",
+          paddingBottom: "-",
+          paddingLeft: "-",
+          paddingRight: "-",
+          marginTop: "-",
+          marginBottom: "-",
+          marginLeft: "-",
+          marginRight: "-"
+        },
+        medium: {
+          paddingTop: "-",
+          paddingBottom: "-",
+          paddingLeft: "-",
+          paddingRight: "-",
+          marginTop: "-",
+          marginBottom: "-",
+          marginLeft: "-",
+          marginRight: "-"
+        },
+        large: {
+          paddingTop: "-",
+          paddingBottom: "-",
+          paddingLeft: "-",
+          paddingRight: "-",
+          marginTop: "-",
+          marginBottom: "-",
+          marginLeft: "-",
+          marginRight: "-"
+        }
       };
+    },
+    setBreakpoint(bp) {
+      this.breakpoint = bp;
     },
     pluginCreated() {
       // eslint-disable-next-line
@@ -117,6 +279,15 @@ export default {
 </script>
 
 <style>
+select {
+  text-align: center;
+  text-align-last: center;
+}
+option {
+  text-align: left;
+}
+
+
 .active {
   background-color: #efefef;
 }
@@ -141,7 +312,7 @@ export default {
 }
 
 .select-breakpoint {
-  text-align: center;
+  text-align: center !important;
   width: 24px !important;
   height: 20px !important;
   font-size: 10px !important;
@@ -153,6 +324,7 @@ export default {
   background-color: #efefef;
   text-align: center;
   font-size: 12px;
+  margin-bottom: 8px;
 }
 
 .box-model .relative {
