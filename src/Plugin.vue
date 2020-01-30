@@ -1,110 +1,73 @@
 <template>
-  <div class="box-model">
-    <div class="box-model__margin relative">
-      <span class="box-model__title">margin</span>
-      <div class="box-model__margin-top">
-        <input
-          type="text"
-          placeholder="-"
-          v-model="model.marginTop"
-          class="input-number"
-        />
-      </div>
-      <div class="box-model__margin-bottom">
-        <input
-          type="text"
-          placeholder="-"
-          v-model="model.marginBottom"
-          class="input-number"
-        />
-      </div>
-      <div class="box-model__margin-left">
-        <input
-          type="text"
-          placeholder="-"
-          v-model="model.marginLeft"
-          class="input-number"
-        />
-      </div>
-      <div class="box-model__margin-right">
-        <input
-          type="text"
-          placeholder="-"
-          v-model="model.marginRight"
-          class="input-number"
-        />
-      </div>
-      <div class="box-model__border relative">
-        <span class="box-model__title">border</span>
-        <div class="box-model__border-top">
-          <input
-            type="text"
-            placeholder="-"
-            v-model="model.borderTop"
-            class="input-number"
-          />
+  <div class="container">
+    <div class="button-group">
+      <button class="active">All (s)</button>
+      <button>Medium UP</button>
+      <button>Large UP</button>
+    </div>
+    <div class="box-model">
+      <div class="box-model__margin relative">
+        <span class="box-model__title">margin</span>
+        <div class="box-model__margin-top">
+          <select class="select-breakpoint" v-model="model.marginTop">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
         </div>
-        <div class="box-model__border-bottom">
-          <input
-            type="text"
-            placeholder="-"
-            v-model="model.borderBottom"
-            class="input-number"
-          />
+        <div class="box-model__margin-bottom">
+          <select class="select-breakpoint" v-model="model.marginBottom">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
         </div>
-        <div class="box-model__border-left">
-          <input
-            type="text"
-            placeholder="-"
-            v-model="model.borderLeft"
-            class="input-number"
-          />
+        <div class="box-model__margin-left">
+          <select class="select-breakpoint" v-model="model.marginLeft">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
         </div>
-        <div class="box-model__border-right">
-          <input
-            type="text"
-            placeholder="-"
-            v-model="model.borderRight"
-            class="input-number"
-          />
+        <div class="box-model__margin-right">
+          <select class="select-breakpoint" v-model="model.marginRight">
+            <option :key="option" v-for="option in options" :value="option">{{
+              option
+            }}</option>
+          </select>
         </div>
         <div class="box-model__padding relative">
           <span class="box-model__title">padding</span>
           <div class="box-model__padding-top">
-            <input
-              type="text"
-              placeholder="-"
-              v-model="model.paddingTop"
-              class="input-number"
-            />
+            <select class="select-breakpoint" v-model="model.paddingTop">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
           </div>
           <div class="box-model__padding-bottom">
-            <input
-              type="text"
-              placeholder="-"
-              v-model="model.paddingBottom"
-              class="input-number"
-            />
+            <select class="select-breakpoint" v-model="model.paddingBottom">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
           </div>
           <div class="box-model__padding-left">
-            <input
-              type="text"
-              placeholder="-"
-              v-model="model.paddingLeft"
-              class="input-number"
-            />
+            <select class="select-breakpoint" v-model="model.paddingLeft">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
           </div>
           <div class="box-model__padding-right">
-            <input
-              type="text"
-              placeholder="-"
-              v-model="model.paddingRight"
-              class="input-number"
-            />
+            <select class="select-breakpoint" v-model="model.paddingRight">
+              <option :key="option" v-for="option in options" :value="option">{{
+                option
+              }}</option>
+            </select>
           </div>
           <div class="box-model__dimensions relative">
-            <span class="box-model__title">dimensions</span>
-            ? x ?
+            content
           </div>
         </div>
       </div>
@@ -115,23 +78,24 @@
 <script>
 export default {
   mixins: [window.Storyblok.plugin],
+  data: function() {
+    return {
+      options: ["-", "xs", "s", "m", "l", "xl", "xxl"]
+    };
+  },
   methods: {
     initWith() {
       return {
         // needs to be equal to your storyblok plugin name
         plugin: "spacing-plugin",
-        paddingTop: "-",
-        paddingBottom: "-",
-        paddingLeft: "-",
-        paddingRight: "-",
-        marginTop: "-",
-        marginBottom: "-",
-        marginLeft: "-",
-        marginRight: "-",
-        borderTop: "-",
-        borderBottom: "-",
-        borderLeft: "-",
-        borderRight: "-"
+        paddingTop: "",
+        paddingBottom: "",
+        paddingLeft: "",
+        paddingRight: "",
+        marginTop: "",
+        marginBottom: "",
+        marginLeft: "",
+        marginRight: ""
       };
     },
     pluginCreated() {
@@ -153,12 +117,36 @@ export default {
 </script>
 
 <style>
+.active {
+  background-color: #efefef;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-group {
+  margin: 8px 0;
+  display: flex;
+  align-self: flex-end;
+}
+
 .input-number {
   text-align: center;
   width: 24px !important;
   height: 20px !important;
   font-size: 10px !important;
   padding: 0 !important;
+}
+
+.select-breakpoint {
+  text-align: center;
+  width: 24px !important;
+  height: 20px !important;
+  font-size: 10px !important;
+  padding: 0 !important;
+  background-image: none !important;
 }
 
 .box-model {
