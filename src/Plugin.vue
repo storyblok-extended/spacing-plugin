@@ -216,7 +216,7 @@ export default {
   mixins: [window.Storyblok.plugin],
   data: function() {
     return {
-      options: ["-", "xs", "s", "m", "l", "xl", "xxl"],
+      options: ["-", "0", "xs", "s", "m", "l", "xl", "xxl"],
       breakpoint: 's',
     };
   },
