@@ -1,6 +1,11 @@
-const breakpoints = ["xs", "s", "m", "l", "xl"];
+export const breakpoints = [
+    { size: "s", name: "All (s)" },
+    { size: "m", name: "Medium" },
+    { size: "l", name: "Large" },
+    { size: "xl", name: "XL" }
+  ];
 
-const sizes = {
+export const sizes = {
   xxs: 2,
   xs: 4,
   s: 8,
