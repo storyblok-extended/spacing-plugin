@@ -8,9 +8,7 @@ if (process.env.NODE_ENV == 'development') {
   window.StoryblokPluginRegistered = true;
 
 } else {
-  
-  let init = Plugin.methods.initWith() 
+  let init = Plugin.methods.initWith()
   window.storyblok.field_types[init.plugin] = Plugin
-
 }
 
